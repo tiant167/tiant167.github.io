@@ -12,4 +12,4 @@ Problems I met:
 - `antd` meets `CSS modules` will break down, should exclude CSS modules setting for node_modules
 - `javascriptEnabled` should be set to true for `antd`
 - `fs` module can only be used in server-side code
-
+- when use github page, an empty file `.nojekyll` should be added. jekyll will ignore folder starts with `_`
