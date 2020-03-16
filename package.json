@@ -8,7 +8,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "export": "next export -o docs",
+    "export": "next export",
     "clean": "rm -rf dist",
     "purge": "rm -rf package-lock.json node_modules && npm run clean"
   },
