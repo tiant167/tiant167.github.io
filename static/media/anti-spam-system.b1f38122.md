@@ -39,7 +39,7 @@ Spam 在即刻 App 中会以内容、用户和行为三种形式存在。
 
 通过上面的描述，我们可以很明显的感觉到，发现和清理 Spam 内容是一个响应非常迟钝、缓慢的过程。发现和清理会落后于 Spammer 对社区的攻击。这里我们引用 Facebook 的论文《Immune System》中的一段陈述来看这个问题。
 
-![/anti-spam-system/cycle.png](/anti-spam-system/cycle.png)
+![/cycle.png](/cycle.png)
 
 我们可以将 Spam 内容划分成四个阶段，“攻击开始”、“被检测到”、“攻击被抵御”、“抵御被察觉”
 
@@ -55,7 +55,7 @@ Spam 在即刻 App 中会以内容、用户和行为三种形式存在。
 
 这个是整个系统的顶层设计图，系统中有“设备安全中心”、“行为监控中心”、“内容安全中心”、“举报中心”和“数据中心”五个子系统。
 
-![/anti-spam-system/system.png](/anti-spam-system/system.png)
+![/system.png](/system.png)
 
 ### 设备安全中心
 
