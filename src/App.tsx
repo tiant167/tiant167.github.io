@@ -14,6 +14,7 @@ const About = () => (
 
 function App() {
   return (
+    // 要用 HashRouter，因为放在 github page 上 BrowserRouter 会 404
     <Router>
       <Layout>
         {/* exact 是因为 / 会匹配所有的 path */}
