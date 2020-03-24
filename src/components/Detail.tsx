@@ -5,6 +5,7 @@ import NotFound from './404';
 import ReactMarkdown from 'react-markdown'
 import { Article } from '../global';
 import moment from 'moment';
+import css from '../App.module.less'
 
 export default class Detail extends React.Component<RouteComponentProps<{id: string}>, {article?: Article,content: string}> {
   constructor(props: RouteComponentProps<{id: string}>) {
@@ -37,7 +38,7 @@ export default class Detail extends React.Component<RouteComponentProps<{id: str
       <div>
         {/* <h2>{ this.state.article.title }</h2> */}
         <em>Written in { moment(this.state.article.createdAt).format('YYYY-MM-DD') }</em>
-        <ReactMarkdown source={this.state.content} />
+        <ReactMarkdown className={css.DetailMarkdown} source={this.state.content} />
       </div>
     )
   }

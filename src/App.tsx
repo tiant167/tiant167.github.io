@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from './components/Layout';
 import Home from './components/Home';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Route,
 } from 'react-router-dom'
 import Detail from './components/Detail';
