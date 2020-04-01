@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './index.less';
 import Category from '@/components/Category';
-import articles from '../data/articles';
+import articles from '../assets/articles';
 
 // global.less 并没有成功
 

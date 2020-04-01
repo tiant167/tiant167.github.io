@@ -3,7 +3,7 @@ import { RouteComponentProps, Redirect } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown'
 import moment from 'moment';
 import css from './detail.less'
-import articles from '../../data/articles'
+import articles from '../../assets/articles'
 
 
 export default class Detail extends React.Component<RouteComponentProps<{id: string}>, {article?: any,content: string}> {
@@ -20,11 +20,8 @@ export default class Detail extends React.Component<RouteComponentProps<{id: str
 
   async componentDidMount() {
     if (this.state.article) {
-      console.log('111111111', this.state.article.content)
-      const file = await fetch(this.state.article.content)
-      const content = await file.text()
-
-      console.log('this.state.article', content)
+      const content = this.state.article.content
+      console.log('content', content)
       this.setState({
         content,
       })
