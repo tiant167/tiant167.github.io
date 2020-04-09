@@ -4,3 +4,5 @@ export interface Article {
   createdAt: Date,
   content: string,
 }
+
+export type StateType = Article[]

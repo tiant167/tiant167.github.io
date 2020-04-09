@@ -9,6 +9,7 @@ const Header: React.FunctionComponent = () => {
         <li><Link className={css.NavMenu} to="/"><span role="img" aria-label="ok">👌</span></Link></li>
         <li><Link className={css.NavMenu} to="/">Home</Link></li>
         <li><Link className={css.NavMenu} to="/about">About</Link></li>
+        <li><Link className={css.NavMenu} to="/create">Create</Link></li>
       </ul>
     </div>
   )
