@@ -5,4 +5,4 @@ export interface Article {
   content: string,
 }
 
-export type StateType = Article[]
+export type StateType = { articles: Article[], count: number }
