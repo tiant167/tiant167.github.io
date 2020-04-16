@@ -1,6 +1,6 @@
 import React from 'react';
 import css from '../App.module.less'
-import Category from '../containers/Category';
+import Category from '../routes/Category';
 
 const Home = () => (
   <div>

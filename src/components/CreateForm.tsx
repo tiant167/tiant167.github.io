@@ -2,7 +2,7 @@ import React from 'react'
 import { DispatchProp } from 'react-redux'
 import { addArticle } from '../actions'
 import  css from '../App.module.less'
-import { connect } from 'react-redux'
+import { connect } from 'dva'
 
 const CreateForm = (props: DispatchProp) => {
   let title :HTMLInputElement

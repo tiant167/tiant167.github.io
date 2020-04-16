@@ -1,9 +1,9 @@
 import * as _ from 'lodash'
 
 export enum Actions {
-  addArticle = 'ADD_ARTICLE',
-  increment = 'INCREMENT',
-  incrementAsync = 'INCREMENT_ASYNC',
+  addArticle = 'count/addArticle',
+  increment = 'count/increment',
+  incrementAsync = 'count/incrementAsync',
 }
 export const addArticle = (title: string, content: string) => ({
   type: Actions.addArticle,

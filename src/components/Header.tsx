@@ -1,6 +1,6 @@
 import React from 'react';
 import css from '../App.module.less'
-import { Link } from 'react-router-dom';
+import { Link } from 'dva/router';
 
 const Header: React.FunctionComponent = () => {
   return (
