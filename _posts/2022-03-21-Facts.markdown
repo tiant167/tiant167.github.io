@@ -3,11 +3,11 @@ layout: post
 title:  "《事实》思维导图整理"
 date:   2022-03-21 13:13:14 +0800
 tags: [Reading notes]
-thumbnail: "assets/img/thumbnails/feature-img/facts.png"
+thumbnail: "assets/img/thumbnails/feature-img/facts.webp"
 
 ---
 直接用 Xmind 导出的图片了，放大看吧，缩得有些小了。
 
 我觉得他是简化版的《思考快与慢》:P 总结而言就是克服本能，慢一些思考，实事求是。
 
-![Mind Maps](/assets/img/post-images/facts-01.png)
+![Mind Maps](/assets/img/post-images/facts-01.webp)

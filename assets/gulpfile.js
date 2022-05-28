@@ -12,7 +12,7 @@ const less = require('gulp-less');
 const cleanCSS = require('gulp-clean-css');
 const replace = require('gulp-replace');
 const webp = require('gulp-webp');
-const responsive = require('gulp-responsive');
+// const responsive = require('gulp-responsive');
 const fs = require('fs');
 
 // Use it gulp post -n <title of the post>
