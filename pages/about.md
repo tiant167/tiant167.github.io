@@ -2,7 +2,7 @@
 layout: page
 title: About
 permalink: /about/
-feature-img: "assets/img/pexels/travel.webp"
+feature-img: "assets/img/header/headerImg.webp"
 ---
 
 Hi， I'm Haotian Chai, a dog-lover, 🌈 friendly, living in Shanghai and Hangzhou.
