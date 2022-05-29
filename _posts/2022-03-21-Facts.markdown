@@ -4,7 +4,6 @@ title:  "《事实》思维导图整理"
 date:   2022-03-21 13:13:14 +0800
 tags: [Reading notes]
 thumbnail: "assets/img/thumbnails/feature-img/facts.webp"
-
 ---
 直接用 Xmind 导出的图片了，放大看吧，缩得有些小了。
 
