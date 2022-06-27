@@ -54,5 +54,5 @@ tags: [Reading notes]
 
 ### 其他
 关于宣传手段、公共媒体、大众情绪相关的也可以听一下这一期播客
-{% include aligner.html images="post-images/IMG_4E8947152FED-1.jpeg" %}
+{% include aligner.html images="post-images/IMG_4E8947152FED-1.webp" %}
 [声东击西 #180 伯内斯，和后来那些操纵大众情绪的手](https://www.xiaoyuzhoufm.com/episode/604a0f7c393439a08720bb00?s=eyJ1IjogIjVlNGUwNDdiMWExY2Q5YjM0MDAyZGYxMyJ9)

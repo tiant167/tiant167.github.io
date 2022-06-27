@@ -49,7 +49,7 @@ tags: [Reading notes]
 ### 其他
 类似的讨论还可以听下以下几个播客节目：
 
-{% include aligner.html images="post-images/IMG_C64596C7DE50-1.jpeg,post-images/IMG_2969F95EC24B-1.jpeg" column=2 %}
+{% include aligner.html images="post-images/IMG_C64596C7DE50-1.webp,post-images/IMG_2969F95EC24B-1.webp" column=2 %}
 
 [声东击西 #205 经济学家眼里的算法之蠢和治理难题](https://www.xiaoyuzhoufm.com/episode/62330a003dcb87088b090718?s=eyJ1IjogIjVlNGUwNDdiMWExY2Q5YjM0MDAyZGYxMyJ9)
 
