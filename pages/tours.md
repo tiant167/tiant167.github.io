@@ -8,6 +8,17 @@ tags: [Page]
 {% include gallery-header.html %}
 在这里会收录一些旅游时拍的照片。历史存货太多了，更多照片翻阅 [Instagram](https://www.instagram.com/tiant167/) 吧！
 
+#### 雨崩
+22年末完成了雨崩三天的徒步！每天都在10+KM，运气不错哦，天气、雪山和疫情都非常好运。
+还可以推荐一些装备和 Tips：
+- 迪卡侬的徒步鞋、双层防水泡袜、冲锋衣
+- Black Diamond Trail Back
+- 三顿半的咖啡粉
+- 1.5L 农夫山泉（笑
+- 短暂停留、疫情风险的城市开启飞行模式
+
+{% include gallery.html gallery_path="assets/img/tours/yubeng" %}
+
 #### 海西蒙古族藏族自治州
 {% include gallery.html gallery_path="assets/img/tours/qinghai" %}
 
