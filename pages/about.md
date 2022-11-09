@@ -9,11 +9,13 @@ Hi， I'm Haotian Chai, a dog-lover, 🌈 friendly, living in Shanghai and Hangz
 
 Beta is our family member, a corgi. You can find her cute photos [here](/beta/)!
 
-Currently I work at [AntGroup](https://www.antgroup.com/en) as full-stack engineer, former [Jike](https://okjike.com/), [Keep](https://www.keepkeep.com/) and [WandouLabs](https://www.wandoujia.com/).
+Currently I work at [AntGroup](https://www.antgroup.com/en) as full-stack engineer, former engineer of [Jike](https://okjike.com/), [Keep](https://www.keepkeep.com/) and [WandouLabs](https://www.wandoujia.com/).
 
 In this blog, I will share some [fragments of life](/tours/), some [thoughts after reading](/tags/#Reading+notes), and self reflations during work.
 
 Be curious about life
+
+Keywords: 📹photography / ☕️coffee / 🏎️driving / 🏃jogging / 🥾hiking / 🏂snowboard
 <hr />
 Hi, 我的名字叫柴昊天，宠物爱好者，🌈友好，目前居住在上海和杭州。
 
@@ -25,3 +27,4 @@ Beta 是我们的家庭成员，一只柯基犬。你可以在[这里](/beta/)�
 
 希望对生活始终充满好奇心
 
+关键词：📹摄影 / ☕️咖啡 / 🏎️驾驶 / 🏃慢跑 / 🥾徒步 / 🏂滑雪
