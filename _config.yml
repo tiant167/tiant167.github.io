@@ -6,7 +6,7 @@ url: "https://tiant167.github.io"
 title: Blog No.167                                    # site's title
 description: "A place to record some fragments of life, which maybe meaningless (or not?)"      # used by search engines
 avatar: #assets/img/triangle.png                         # Empty for no avatar in navbar
-favicon: #assets/favicon.ico                             # Icon displayed in the tab
+favicon: assets/favicon.ico                             # Icon displayed in the tab
 
 # Header and footer text
 header_text: Not the end, right?  # Change Blog header text
