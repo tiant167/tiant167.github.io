@@ -8,6 +8,11 @@ tags: [Page]
 {% include gallery-header.html %}
 在这里会收录一些旅游时拍的照片。历史存货太多了，更多照片翻阅 [Instagram](https://www.instagram.com/tiant167/) 吧！
 
+#### 丙中洛
+发觉在这个 Page 里不能很好的写长游记，所以索性就单独写了个 [Post](https://tiant167.github.io/2023/01/30/tour.html)。这里就贴一些照片吧～
+
+{% include gallery.html gallery_path="assets/img/tours/binzhongluo" %}
+
 #### 雨崩
 22年末完成了雨崩三天的徒步！每天都在10+KM，运气不错哦，天气、雪山和疫情都非常好运。
 还可以推荐一些装备和 Tips：
