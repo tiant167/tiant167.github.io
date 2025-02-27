@@ -1,0 +1,208 @@
+<!-- <link rel="stylesheet" href="style.css"> -->
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+<style>
+    .container {
+        padding: 20px;
+        height: calc(100vh - 140px);
+    }
+    #map {
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .popup-image {
+        /* max-width: 300px; */
+        max-height: 200px;
+        border-radius: 4px;
+        margin-top: 10px;
+    }
+    .popup-content {
+        text-align: center;
+        padding: 10px;
+    }
+    .popup-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+        font-size: 1.2em;
+        color: #35424a;
+    }
+    .popup-date {
+        color: #666;
+        font-size: 0.9em;
+        margin-bottom: 10px;
+    }
+    .home-link {
+        margin: 20px;
+        display: inline-block;
+    }
+    .mapboxgl-popup-content {
+        padding: 0;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .marker {
+        width: 20px;
+        height: 20px;
+        background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2335424a"><path d="M12 0C7.802 0 4 3.403 4 7.602C4 11.8 7.469 16.812 12 24C16.531 16.812 20 11.8 20 7.602C20 3.403 16.199 0 12 0ZM12 11C10.343 11 9 9.657 9 8C9 6.343 10.343 5 12 5C13.657 5 15 6.343 15 8C15 9.657 13.657 11 12 11Z"/></svg>');
+        background-size: cover;
+        cursor: pointer;
+    }
+    .marker:hover {
+        transform: scale(1.2);
+        transition: transform 0.2s;
+    }
+</style>
+<div class="container">
+    <div style="color: #666; font-size: 0.8em; margin-bottom: 8px; text-align: right;">This page was created with assistance from Windsurf and Claude</div>
+<div id="map"></div>
+    
+</div>
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+<script>
+    // Replace with your Mapbox access token
+    mapboxgl.accessToken = 'pk.eyJ1IjoidGlhbnQxNjciLCJhIjoiY203Z2VnbnQ2MHY4OTJpcXd3NXZwMDdkdyJ9.6E6mkVe7msYXX85VjkAp1w';
+
+
+    // Initialize the map
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v12',
+        center: [2.3522, 48.8566],
+        zoom: 2,
+        projection: 'mercator',  // Use Mercator projection for flat map
+        dragRotate: false,       // Disable rotation by dragging
+        touchZoomRotate: false   // Disable rotation on touch devices
+    });
+
+    // Disable map rotation using right click + drag
+    map.dragRotate.disable();
+
+    // Disable map rotation using touch rotation gesture
+    map.touchZoomRotate.disableRotation();
+
+    // Define travel locations with their details
+    const locations = [
+        {
+            name: 'Appi Kogen',
+            coordinates: [140.9833, 40.0000], // Note: Mapbox uses [longitude, latitude]
+            image: '../assets/img/tours/appi.jpeg',
+            date: 'Jan 2025',
+            description: 'Snowboarding at Appi Kogen.This was the second year we have been here and we love it!'
+        },
+        {
+            name: 'Hakuba',
+            coordinates: [137.8619, 36.6982], // Note: Mapbox uses [longitude, latitude]
+            image: '../assets/img/tours/hakuba.webp',
+            date: 'Dec 2024',
+            description: 'Snowboarding in Hakuba. Because of the La Niña phenomenon, the snowfall in Japan this year is very exaggerated'
+        },
+        {
+            name: '北大壶 BeiDaHu',
+            coordinates: [126.5833, 43.6167], // Note: Mapbox uses [longitude, latitude]
+            image: '../assets/img/tours/beidahu.jpeg',
+            date: 'Feb 2025',
+            description: 'Snowboarding at BeiDaHu, but sadly my wife had broken ribs'
+        },
+        {
+            name: '虎跳峡 TigerLeapingGorge',
+            coordinates: [100.1333, 27.2167], // Note: Mapbox uses [longitude, latitude]
+            image: '../assets/img/tours/tiger.webp',
+            date: 'Nov 2024',
+            description: 'Hiking in Tiger Leaping Gorge, Yunnan, a short hike with beautiful scenery'
+        },
+        {
+            name: 'Kumamoto',
+            coordinates: [130.7079, 32.8031], // Note: Mapbox uses [longitude, latitude]
+            image: '../assets/img/tours/kumamo.webp',
+            date: 'Aug 2024',
+            description: 'First time going to a fireworks display'
+        },
+        {
+            name: '四姑娘山 Mt.Siguning',
+            coordinates: [102.9000, 31.1167], // Note: Mapbox uses [longitude, latitude]
+            image: '../assets/img/tours/siguniang.webp',
+            date: 'May 2024',
+            description: 'Don\'t underestimate the altitude. I fainted here.'
+        },
+        {
+            name: 'Amsterdam',
+            coordinates: [4.8848, 52.3687], // Note: Mapbox uses [longitude, latitude]
+            image: '../assets/img/tours/amsterdam.webp',
+            date: 'Oct 2024',
+            description: 'Transferring in Amsterdam, a short stopover and being captivated by the scenery of the Canal Zone'
+        },
+        {
+            name: 'Venice',
+            coordinates: [12.3155, 45.4408], // Note: Mapbox uses [longitude, latitude]
+            image: '../assets/img/tours/venice.webp',
+            date: 'Oct 2024',
+            description: 'Vacation in Venice. But we were unlucky with all the rainy weather'
+        },
+        {
+            name: 'Milan',
+            coordinates: [9.1900,45.4642], // Note: Mapbox uses [longitude, latitude]
+            image: '../assets/img/tours/milan.webp',
+            date: 'Oct 2024',
+            description: 'A short stay in Milan'
+        },
+        {
+            name: 'Dolomites',
+            coordinates: [11.6167, 46.5333], // Note: Mapbox uses [longitude, latitude]
+            image: '../assets/img/tours/dolomites.webp',
+            date: 'Sep 2024',
+            description: 'Multi-day hikes in the Dolomites. The scenery is too beautiful for words'
+        },
+        {
+            name: 'Kumano Kodo',
+            coordinates: [135.8916, 33.6681], // Note: Mapbox uses [longitude, latitude]
+            image: '../assets/img/tours/kumano.jpeg',
+            date: 'Apr 2024',
+            description: 'A multi-day hike on the Kumano Kodo. Hike the ancient trail, and you can also get a stamp punch along the way in exchange for a certificate of completion'
+        },
+        {
+            name: 'Singapore',
+            coordinates: [103.8500, 1.3500], // Note: Mapbox uses [longitude, latitude]
+            image: '../assets/img/tours/singapore.webp',
+            date: 'Dec 2023',
+            description: 'Going on a business trip with my wife.'
+        }
+        // Add more locations as needed
+    ];
+
+    // Add markers for each location
+    locations.forEach(location => {
+        // Create a marker element
+        const el = document.createElement('div');
+        el.className = 'marker';
+
+        // Create popup content
+        const popupContent = `
+            <div class="popup-content">
+                <div class="popup-title">${location.name}</div>
+                <div class="popup-date">${location.date}</div>
+                <div>${location.description}</div>
+                <img src="${location.image}" alt="${location.name}" class="popup-image">
+            </div>
+        `;
+
+        // Create the popup
+        const popup = new mapboxgl.Popup({
+            offset: 25,
+            closeButton: false,
+            maxWidth: '320px'
+        }).setHTML(popupContent);
+
+        // Create and add the marker
+        new mapboxgl.Marker(el)
+            .setLngLat(location.coordinates)
+            .setPopup(popup)
+            .addTo(map);
+    });
+
+    // Add navigation controls
+    map.addControl(new mapboxgl.NavigationControl());
+
+    // Add fullscreen control
+    map.addControl(new mapboxgl.FullscreenControl());
+</script>
