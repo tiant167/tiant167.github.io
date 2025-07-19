@@ -1,0 +1,423 @@
+---
+layout: page
+title: "🎮 Vibe Maze Game"
+permalink: /maze/
+---
+
+<div id="maze-container">
+    <div class="maze-header">
+        <h1>VIBE MAZE GAME</h1>
+        <p>Use arrow keys to navigate. Find the exit (@) to win!</p>
+    </div>
+    
+    <div class="maze-display">
+        <pre id="maze-grid"></pre>
+    </div>
+    
+    <div class="maze-controls">
+        <div class="control-row">
+            <button class="control-btn" onclick="moveUp()">↑</button>
+        </div>
+        <div class="control-row">
+            <button class="control-btn" onclick="moveLeft()">←</button>
+            <button class="control-btn" onclick="moveDown()">↓</button>
+            <button class="control-btn" onclick="moveRight()">→</button>
+        </div>
+    </div>
+    
+    <div class="maze-status">
+        <p id="status-text">Use arrow buttons to move!</p>
+    </div>
+    
+    <div id="win-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>CONGRATULATIONS!</h2>
+            <p>You found the exit!</p>
+            <button onclick="startNewGame()">START NEW GAME</button>
+            <button onclick="closeModal()">CLOSE</button>
+        </div>
+    </div>
+</div>
+
+<style>
+#maze-container {
+    font-family: 'Courier New', monospace;
+    background-color: #000;
+    color: #00ff00;
+    padding: 20px;
+    text-align: center;
+    min-height: 80vh;
+}
+
+.maze-header h1 {
+    color: #00ff00;
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px #00ff00;
+}
+
+.maze-header p {
+    color: #00ff00;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.maze-display {
+    background-color: #000;
+    border: 2px solid #00ff00;
+    padding: 20px;
+    display: inline-block;
+    box-shadow: 0 0 20px #00ff00;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+#maze-grid {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5em;
+    line-height: 1;
+    color: #00ff00;
+    margin: 0;
+    text-align: left;
+}
+
+.maze-status p {
+    color: #00ff00;
+    font-size: 1.2em;
+    margin-top: 20px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.maze-status p:hover {
+    color: #ffff00;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background-color: #000;
+    border: 2px solid #00ff00;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 0 30px #00ff00;
+}
+
+.modal-content h2 {
+    color: #00ff00;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #00ff00;
+}
+
+.modal-content p {
+    color: #00ff00;
+    margin-bottom: 30px;
+    font-size: 1.2em;
+}
+
+.modal-content button {
+    background-color: #000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 1em;
+    transition: all 0.3s;
+}
+
+.modal-content button:hover {
+    background-color: #00ff00;
+    color: #000;
+    box-shadow: 0 0 10px #00ff00;
+}
+
+.wall { color: #ffffff; }
+.path { color: #000000; }
+.player { color: #ffff00; }
+.exit { color: #ff0000; }
+.maze-controls {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.control-row {
+    margin: 5px 0;
+}
+
+.control-btn {
+    background-color: #000;
+    color: #00ff00;
+    border: 2px solid #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 1.5em;
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    min-width: 50px;
+    min-height: 50px;
+    transition: all 0.3s;
+}
+
+.control-btn:hover {
+    background-color: #00ff00;
+    color: #000;
+    box-shadow: 0 0 10px #00ff00;
+}
+
+.control-btn:active {
+    background-color: #004400;
+    color: #00ff00;
+}
+
+</style>
+
+<script>
+class MazeGame {
+    constructor(width = 21, height = 15) {
+        this.width = width;
+        this.height = height;
+        this.maze = [];
+        this.player = { x: 1, y: 1 };
+        this.exit = { x: width - 2, y: height - 2 };
+        this.init();
+    }
+
+    init() {
+        this.generateMaze();
+        this.render();
+        this.bindEvents();
+        this.updateStatus();
+    }
+
+    generateMaze() {
+        // Initialize maze with walls
+        this.maze = Array(this.height).fill().map(() => Array(this.width).fill('#'));
+        
+        // Start from player position and carve out a maze
+        this.carvePassages(1, 1);
+        
+        // Ensure player start position is clear
+        this.maze[1][1] = ' ';
+        
+        // Ensure exit is clear
+        this.maze[this.exit.y][this.exit.x] = '@';
+        
+        // Create a direct path if no path exists
+        this.ensurePathExists();
+    }
+
+    carvePassages(x, y) {
+        const directions = [[0, -2], [2, 0], [0, 2], [-2, 0]];
+        this.shuffleArray(directions);
+
+        for (let [dx, dy] of directions) {
+            const nx = x + dx;
+            const ny = y + dy;
+
+            if (nx > 0 && nx < this.width - 1 && ny > 0 && ny < this.height - 1 && this.maze[ny][nx] === '#') {
+                this.maze[y + dy/2][x + dx/2] = ' ';
+                this.maze[ny][nx] = ' ';
+                this.carvePassages(nx, ny);
+            }
+        }
+    }
+
+    ensurePathExists() {
+        // Simple BFS to ensure there's a path from start to exit
+        const visited = Array(this.height).fill().map(() => Array(this.width).fill(false));
+        const queue = [{x: 1, y: 1}];
+        visited[1][1] = true;
+        
+        const directions = [[0, 1], [1, 0], [0, -1], [-1, 0]];
+        
+        while (queue.length > 0) {
+            const {x, y} = queue.shift();
+            
+            if (x === this.exit.x && y === this.exit.y) {
+                return; // Path exists
+            }
+            
+            for (const [dx, dy] of directions) {
+                const nx = x + dx;
+                const ny = y + dy;
+                
+                if (nx >= 0 && nx < this.width && ny >= 0 && ny < this.height && 
+                    this.maze[ny][nx] !== '#' && !visited[ny][nx]) {
+                    visited[ny][nx] = true;
+                    queue.push({x: nx, y: ny});
+                }
+            }
+        }
+        
+        // If no path exists, create a simple direct path
+        console.log('No path found, creating direct path');
+        let x = 1, y = 1;
+        while (x !== this.exit.x || y !== this.exit.y) {
+            this.maze[y][x] = ' ';
+            
+            if (x < this.exit.x) x++;
+            else if (x > this.exit.x) x--;
+            else if (y < this.exit.y) y++;
+            else if (y > this.exit.y) y--;
+        }
+        this.maze[this.exit.y][this.exit.x] = '@';
+    }
+
+    shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    bindEvents() {
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            this.handleKeyPress(e);
+        });
+    }
+
+    handleKeyPress(e) {
+        const keyMap = {
+            'ArrowUp': [0, -1],
+            'ArrowDown': [0, 1],
+            'ArrowLeft': [-1, 0],
+            'ArrowRight': [1, 0],
+            'w': [0, -1],
+            's': [0, 1],
+            'a': [-1, 0],
+            'd': [1, 0],
+            'W': [0, -1],
+            'S': [0, 1],
+            'A': [-1, 0],
+            'D': [1, 0]
+        };
+
+        if (keyMap[e.key]) {
+            e.preventDefault();
+            const [dx, dy] = keyMap[e.key];
+            this.movePlayer(dx, dy);
+        }
+    }
+
+    render() {
+        const grid = document.getElementById('maze-grid');
+        let display = '';
+
+        for (let y = 0; y < this.height; y++) {
+            let row = '';
+            for (let x = 0; x < this.width; x++) {
+                if (x === this.player.x && y === this.player.y) {
+                    row += '<span class="player">●</span>';
+                } else if (this.maze[y][x] === '@') {
+                    row += '<span class="exit">@</span>';
+                } else if (this.maze[y][x] === '#') {
+                    row += '<span class="wall">█</span>';
+                } else {
+                    row += '<span class="path">·</span>';
+                }
+            }
+            display += row + '\n';
+        }
+
+        grid.innerHTML = display;
+    }
+
+
+    movePlayer(dx, dy) {
+        const newX = this.player.x + dx;
+        const newY = this.player.y + dy;
+
+        if (newX >= 0 && newX < this.width && newY >= 0 && newY < this.height && 
+            this.maze[newY][newX] !== '#') {
+            this.player.x = newX;
+            this.player.y = newY;
+            this.render();
+            this.updateStatus();
+
+            // Check win condition
+            if (this.player.x === this.exit.x && this.player.y === this.exit.y) {
+                this.showWinModal();
+            }
+        }
+    }
+
+    updateStatus() {
+        const status = document.getElementById('status-text');
+        status.textContent = `Position: (${this.player.x}, ${this.player.y}) | Find the exit (@)!`;
+    }
+
+    showWinModal() {
+        document.getElementById('win-modal').classList.remove('hidden');
+    }
+
+    reset() {
+        this.player = { x: 1, y: 1 };
+        this.generateMaze();
+        this.render();
+        this.updateStatus();
+    }
+}
+
+let game;
+
+function startNewGame() {
+    if (game) {
+        game.reset();
+    } else {
+        game = new MazeGame();
+    }
+    closeModal();
+}
+
+function closeModal() {
+    document.getElementById('win-modal').classList.add('hidden');
+}
+
+// Global movement functions for button controls
+function moveUp() {
+    console.log('Move up clicked');
+    if (game) game.movePlayer(0, -1);
+}
+
+function moveDown() {
+    console.log('Move down clicked');
+    if (game) game.movePlayer(0, 1);
+}
+
+function moveLeft() {
+    console.log('Move left clicked');
+    if (game) game.movePlayer(-1, 0);
+}
+
+function moveRight() {
+    console.log('Move right clicked');
+    if (game) game.movePlayer(1, 0);
+}
+
+// Initialize game when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    game = new MazeGame();
+    
+    console.log('Maze game initialized - use buttons to move!');
+});
+</script>
