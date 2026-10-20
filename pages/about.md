@@ -9,7 +9,7 @@ Hi, I'm Haotian Chai. I'm a back-end engineer splitting my time between Shanghai
 
 By day, I'm an engineer at [AntGroup](https://www.antgroup.com/en). My journey in tech has also taken me through some amazing companies like [Jike](https://okjike.com/), [Keep](https://www.keepkeep.com/), and [WandouLabs](https://www.wandoujia.com/).
 
-This blog is my space to step back and reflect. Here, I share [snippets from my life and travels](/tours/), [thoughts and notes from books I've read](/tags/#Reading+notes), and reflections on my work in software engineering.
+This blog is my space to step back and reflect. Here, I share [snippets from my life and travels](/tours/), [thoughts from books I've read](/books/), and reflections on my work in software engineering.
 
 When I'm not coding, you can probably find me:
 *   Exploring the world through my camera lens 📹
@@ -27,7 +27,7 @@ Thanks for stopping by.
 
 白天，我在[蚂蚁集团](https://www.antgroup.com/en)工作。在此之前，我也曾在[即刻](https://okjike.com/)、[Keep](https://www.keepkeep.com/)和[豌豆荚](https://www.wandoujia.com/)这些很棒的公司留下过足迹。
 
-这个博客是我停下脚步、思考和沉淀的地方。在这里，我会分享一些[生活与旅行的片段](/tours/)、[读书的随想](/tags/#Reading+notes)，以及作为一名软件工程师的工作反思。
+这个博客是我停下脚步、思考和沉淀的地方。在这里，我会分享一些[生活与旅行的片段](/tours/)、[读书的随想](/books/)，以及作为一名软件工程师的工作反思。
 
 工作之余，我通常会：
 *   用相机探索世界 📹

@@ -1,0 +1,112 @@
+---
+layout: bookshelf
+title: "📚 书架"
+permalink: /books/
+description: "豆瓣上标记读过的书。写过读后感的，会放在介绍下面。"
+---
+
+<div class="shelf">
+  <header class="shelf-intro">
+    <h1>书架</h1>
+    <p>豆瓣上标记读过的 {{ site.data.books.size }} 本书。写过读后感的，会放在介绍下面。</p>
+  </header>
+
+  <style>
+    {% for book in site.data.books %}
+    .shelf:has(#{{ book.reading.slug }}:target) .shelf-index a[href="#{{ book.reading.slug }}"] {
+      background: var(--shelf-accent-soft);
+      color: var(--shelf-accent);
+    }
+    {% endfor %}
+  </style>
+
+  <div class="shelf-body">
+    <nav class="shelf-index" aria-label="书目">
+      {% for book in site.data.books %}
+      <a href="#{{ book.reading.slug }}">
+        <span class="shelf-index-title">{{ book.title }}</span>
+        <span class="shelf-index-year">{{ book.reading.date | date: "%Y" }}</span>
+      </a>
+      {% endfor %}
+    </nav>
+
+    <div class="shelf-stage">
+      {% for book in site.data.books %}
+      <article id="{{ book.reading.slug }}" class="shelf-note">
+        <section class="shelf-card" aria-label="《{{ book.title }}》">
+          <img
+            class="shelf-cover"
+            src="{{ book.reading.cover | relative_url }}"
+            alt=""
+            width="96"
+            loading="lazy"
+          >
+          <div class="shelf-card-main">
+            <h2 id="{{ book.reading.slug }}-title">{{ book.title }}</h2>
+            {% if book.subtitle and book.subtitle != "" %}
+            <p class="shelf-subtitle">{{ book.subtitle }}</p>
+            {% endif %}
+            {% if book.origin_title != "" %}
+            <p class="shelf-origin">{{ book.origin_title }}</p>
+            {% endif %}
+            {% if book.author.size > 0 or book.translator.size > 0 %}
+            <p class="shelf-byline">
+              {{ book.author | join: "、" }}
+              {% if book.translator.size > 0 %}
+              <span> · {{ book.translator | join: "、" }} 译</span>
+              {% endif %}
+            </p>
+            {% endif %}
+            <p class="shelf-card-meta">
+              {% if book.publisher != "" %}{{ book.publisher }}{% endif %}
+              {% if book.pubdate != "" %}{% if book.publisher != "" %} · {% endif %}{{ book.pubdate }}{% endif %}
+              {% if book.pages != "" %} · {{ book.pages }} 页{% endif %}
+              {% if book.binding != "" %} · {{ book.binding }}{% endif %}
+              {% if book.series and book.series.title != "" %} · {{ book.series.title }}{% endif %}
+              {% if book.rating.average != "" %} · 豆瓣 {{ book.rating.average }}{% if book.rating.numRaters > 0 %}（{{ book.rating.numRaters }} 人评价）{% endif %}{% endif %}
+              {% if book.reading.user_rating > 0 %}<span class="shelf-mine"> · 我的评分 {{ book.reading.user_rating }}</span>{% endif %}
+            </p>
+          </div>
+          {% if book.summary != "" %}
+            {% if book.summary.size > 180 %}
+            <details class="shelf-card-blurb">
+              <summary><span class="shelf-clamp-body">{{ book.summary | escape | newline_to_br }}</span></summary>
+            </details>
+            {% else %}
+            <p class="shelf-card-blurb">{{ book.summary | escape | newline_to_br }}</p>
+            {% endif %}
+          {% endif %}
+          <p class="shelf-card-foot">
+            {% if book.tags.size > 0 %}
+            <span class="shelf-tags">{{ book.tags | map: "name" | join: " · " }}</span>
+            {% endif %}
+            {% if book.isbn13 != "" %}
+            <span>ISBN {{ book.isbn13 }}</span>
+            {% endif %}
+            <a href="{{ book.alt }}">在豆瓣查看</a>
+          </p>
+          {% if book.author_intro != "" %}
+          <details class="shelf-summary">
+            <summary>作者简介</summary>
+            <p>{{ book.author_intro | escape | newline_to_br }}</p>
+          </details>
+          {% endif %}
+        </section>
+
+        {% if book.reading.note != "" %}
+        <div class="shelf-reading">
+          <p class="shelf-kicker">读后感 · {{ book.reading.date | date: "%Y年%-m月%-d日" }}</p>
+          {{ book.reading.note | markdownify }}
+        </div>
+        {% endif %}
+
+        {% if book.reading.note != "" and book.reading.source != "" %}
+        <p class="shelf-source">
+          <a href="{{ book.reading.source | relative_url }}">完整笔记：{{ book.reading.source_title }}</a>
+        </p>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</div>
