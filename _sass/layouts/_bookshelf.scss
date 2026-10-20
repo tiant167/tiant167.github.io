@@ -1,0 +1,305 @@
+// Reading shelf. Flat, bright, and typographic: the note is the page.
+
+.bookshelf {
+  --shelf-text: #1c1f1c;
+  --shelf-muted: #5c6560;
+  --shelf-line: #e4e7e2;
+  --shelf-accent: #1d6b45;
+  --shelf-accent-soft: #e7f5ee;
+  --shelf-hover: #f3f6f2;
+  color: var(--shelf-text);
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 2.75rem 6vw 5.5rem;
+}
+
+.shelf-intro {
+  max-width: 40rem;
+  margin-bottom: 2.25rem;
+
+  h1 {
+    margin: 0 0 0.45rem;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--shelf-text);
+  }
+
+  p {
+    margin: 0;
+    color: var(--shelf-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+}
+
+.shelf-body {
+  display: block;
+}
+
+.shelf-index {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+
+  a {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    align-items: baseline;
+    padding: 0.5rem 0.7rem;
+    border-radius: 8px;
+    color: var(--shelf-text);
+    text-decoration: none;
+    line-height: 1.35;
+
+    &:hover {
+      background: var(--shelf-hover);
+      color: var(--shelf-text);
+      text-decoration: none;
+    }
+
+    &[aria-current="true"] {
+      background: var(--shelf-accent-soft);
+      color: var(--shelf-accent);
+    }
+  }
+}
+
+.shelf-index-title {
+  font-weight: 600;
+}
+
+.shelf-index-year {
+  color: var(--shelf-muted);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+  flex: none;
+}
+
+.shelf:not(:has(.shelf-note:target)) .shelf-index a:first-child {
+  background: var(--shelf-accent-soft);
+  color: var(--shelf-accent);
+}
+
+article.shelf-note {
+  padding: 0;
+  margin: 0;
+  float: none;
+  width: auto;
+  border: 0;
+  background: transparent;
+  scroll-margin-top: 1.25rem;
+  text-align: left;
+
+  header {
+    margin: 0;
+    text-align: left;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    filter: none;
+  }
+}
+
+.shelf-note + .shelf-note {
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--shelf-line);
+}
+
+@supports selector(:has(*)) {
+  article.shelf-note {
+    display: none;
+  }
+
+  .shelf-note:target,
+  .shelf:not(:has(.shelf-note:target)) .shelf-note:first-child {
+    display: block;
+  }
+
+  .shelf-note + .shelf-note {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+.shelf-date {
+  margin: 0 0 0.55rem;
+  color: var(--shelf-muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+}
+
+.shelf-note h2 {
+  margin: 0;
+  font-size: 1.85rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--shelf-text);
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.shelf-subtitle,
+.shelf-byline {
+  margin: 0.35rem 0 0;
+  color: var(--shelf-muted);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.shelf-byline {
+  margin-top: 0.7rem;
+  color: var(--shelf-text);
+}
+
+.shelf-reading {
+  max-width: 40rem;
+  margin-top: 1.6rem;
+
+  p {
+    margin: 0 0 1.05em;
+    font-size: 1.125rem;
+    line-height: 1.85;
+    color: var(--shelf-text);
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.shelf-source {
+  max-width: 40rem;
+  margin: 1.35rem 0 0;
+  font-size: 0.98rem;
+
+  a {
+    color: var(--shelf-accent);
+  }
+}
+
+.shelf-facts {
+  display: flex;
+  gap: 1.15rem;
+  align-items: flex-start;
+  max-width: 40rem;
+  margin-top: 2.4rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--shelf-line);
+}
+
+.shelf-cover {
+  width: 84px;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  flex: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--shelf-line);
+  background: var(--shelf-hover);
+}
+
+.shelf-facts-copy {
+  min-width: 0;
+
+  p {
+    margin: 0 0 0.35rem;
+    color: var(--shelf-muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  a {
+    color: var(--shelf-accent);
+  }
+}
+
+.shelf-tags {
+  margin-top: 0.45rem;
+}
+
+.shelf-summary {
+  max-width: 40rem;
+  margin-top: 0.85rem;
+
+  summary {
+    cursor: pointer;
+    color: var(--shelf-muted);
+    font-size: 0.92rem;
+  }
+
+  p {
+    margin: 0.55rem 0 0;
+    color: var(--shelf-muted);
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+}
+
+@media screen and (min-width: 860px) {
+  .shelf-body {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    column-gap: 3.25rem;
+    align-items: start;
+  }
+
+  .shelf-index {
+    position: sticky;
+    top: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 859px) {
+  .bookshelf {
+    padding: 1.75rem 1.15rem 4rem;
+  }
+
+  .shelf-index {
+    flex-direction: row;
+    gap: 0.45rem;
+    overflow-x: auto;
+    margin: 0 -1.15rem 1.35rem;
+    padding: 0 1.15rem 0.35rem;
+    scroll-snap-type: x proximity;
+
+    a {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      border: 1px solid var(--shelf-line);
+      border-radius: 999px;
+      padding: 0.38rem 0.8rem;
+      background: #fff;
+    }
+  }
+
+  .shelf-index-year {
+    display: none;
+  }
+
+  .shelf-note h2 {
+    font-size: 1.55rem;
+  }
+
+  .shelf-reading p {
+    font-size: 1.05rem;
+  }
+}
+
+html[data-theme="dark"] .bookshelf {
+  --shelf-text: var(--text);
+  --shelf-muted: var(--meta);
+  --shelf-line: rgba(255, 255, 255, 0.16);
+  --shelf-accent: #8fd0b0;
+  --shelf-accent-soft: rgba(143, 208, 176, 0.14);
+  --shelf-hover: rgba(255, 255, 255, 0.05);
+}
