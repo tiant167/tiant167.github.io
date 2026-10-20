@@ -2,6 +2,7 @@
 layout: page
 title: "🎮 Vibe Maze Game"
 permalink: /maze/
+hide: true
 ---
 
 <div id="maze-container">
