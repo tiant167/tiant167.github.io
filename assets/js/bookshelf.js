@@ -29,6 +29,10 @@
   function sync(moveFocus) {
     var article = articleForHash();
     if (!article) return;
+    var notes = shelf.querySelectorAll(".shelf-note");
+    Array.prototype.forEach.call(notes, function (note) {
+      note.classList.toggle("is-current", note === article);
+    });
     var current = null;
     links.forEach(function (link) {
       var on = link.getAttribute("href") === "#" + article.id;
