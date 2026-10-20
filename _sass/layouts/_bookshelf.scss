@@ -7,6 +7,7 @@
   --shelf-accent: #1d6b45;
   --shelf-accent-soft: #e7f5ee;
   --shelf-hover: #f3f6f2;
+  --shelf-card: #f7f8f6;
   color: var(--shelf-text);
   max-width: 1040px;
   margin: 0 auto;
@@ -127,16 +128,41 @@ article.shelf-note {
   }
 }
 
-.shelf-date {
-  margin: 0 0 0.55rem;
-  color: var(--shelf-muted);
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
+.shelf-card {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  column-gap: 1.15rem;
+  row-gap: 0.8rem;
+  max-width: 40rem;
+  margin: 0;
+  padding: 1.15rem 1.2rem 1rem;
+  border: 1px solid var(--shelf-line);
+  border-radius: 14px;
+  background: var(--shelf-card);
 }
 
-.shelf-note h2 {
+.shelf-card .shelf-cover {
+  grid-column: 1;
+  grid-row: 1;
+  width: 96px;
+  align-self: start;
+}
+
+.shelf-card-main {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+}
+
+.shelf-card-blurb,
+.shelf-card-foot,
+.shelf-card .shelf-summary {
+  grid-column: 1 / -1;
+}
+
+.shelf-card h2 {
   margin: 0;
-  font-size: 1.85rem;
+  font-size: 1.45rem;
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.25;
@@ -147,28 +173,109 @@ article.shelf-note {
   }
 }
 
+.shelf-origin {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .shelf-subtitle,
-.shelf-byline {
-  margin: 0.35rem 0 0;
+.shelf-origin,
+.shelf-byline,
+.shelf-card-meta {
+  margin: 0.28rem 0 0;
   color: var(--shelf-muted);
-  font-size: 1rem;
+  font-size: 0.92rem;
   line-height: 1.5;
 }
 
 .shelf-byline {
-  margin-top: 0.7rem;
+  margin-top: 0.45rem;
   color: var(--shelf-text);
+}
+
+.shelf-card-meta {
+  margin-top: 0.45rem;
+}
+
+.shelf-card-blurb {
+  margin: 0;
+  color: var(--shelf-text);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.shelf-card-blurb summary {
+  display: block;
+  list-style: none;
+  cursor: pointer;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &::after {
+    content: "展开简介";
+    display: block;
+    margin-top: 0.35rem;
+    color: var(--shelf-accent);
+    font-size: 0.88rem;
+  }
+}
+
+.shelf-card-blurb[open] summary::after {
+  content: "收起简介";
+}
+
+.shelf-clamp-body {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.shelf-card-blurb[open] .shelf-clamp-body {
+  display: block;
+}
+
+.shelf-card-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.85rem;
+  margin: 0;
+  color: var(--shelf-muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+
+  a {
+    color: var(--shelf-accent);
+  }
+}
+
+.shelf-kicker {
+  margin: 0 0 0.85rem;
+  color: var(--shelf-accent);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
 }
 
 .shelf-reading {
   max-width: 40rem;
-  margin-top: 1.6rem;
+  margin-top: 1.7rem;
 
   p {
     margin: 0 0 1.05em;
     font-size: 1.125rem;
     line-height: 1.85;
     color: var(--shelf-text);
+  }
+
+  .shelf-kicker {
+    margin-bottom: 0.85rem;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
   }
 
   p:last-child {
@@ -186,18 +293,8 @@ article.shelf-note {
   }
 }
 
-.shelf-facts {
-  display: flex;
-  gap: 1.15rem;
-  align-items: flex-start;
-  max-width: 40rem;
-  margin-top: 2.4rem;
-  padding-top: 1.4rem;
-  border-top: 1px solid var(--shelf-line);
-}
-
 .shelf-cover {
-  width: 84px;
+  width: 96px;
   height: auto;
   aspect-ratio: 3 / 4;
   object-fit: cover;
@@ -208,23 +305,8 @@ article.shelf-note {
   background: var(--shelf-hover);
 }
 
-.shelf-facts-copy {
-  min-width: 0;
-
-  p {
-    margin: 0 0 0.35rem;
-    color: var(--shelf-muted);
-    font-size: 0.92rem;
-    line-height: 1.55;
-  }
-
-  a {
-    color: var(--shelf-accent);
-  }
-}
-
-.shelf-tags {
-  margin-top: 0.45rem;
+.shelf-card .shelf-summary {
+  margin-top: 0;
 }
 
 .shelf-summary {
@@ -286,8 +368,17 @@ article.shelf-note {
     display: none;
   }
 
-  .shelf-note h2 {
-    font-size: 1.55rem;
+  .shelf-card {
+    grid-template-columns: 76px minmax(0, 1fr);
+    padding: 0.95rem;
+  }
+
+  .shelf-card .shelf-cover {
+    width: 76px;
+  }
+
+  .shelf-card h2 {
+    font-size: 1.28rem;
   }
 
   .shelf-reading p {
@@ -302,4 +393,5 @@ html[data-theme="dark"] .bookshelf {
   --shelf-accent: #8fd0b0;
   --shelf-accent-soft: rgba(143, 208, 176, 0.14);
   --shelf-hover: rgba(255, 255, 255, 0.05);
+  --shelf-card: rgba(255, 255, 255, 0.04);
 }
