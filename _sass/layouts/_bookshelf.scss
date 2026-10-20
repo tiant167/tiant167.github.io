@@ -79,11 +79,6 @@
   flex: none;
 }
 
-.shelf:not(:has(.shelf-note:target)) .shelf-index a:first-child {
-  background: var(--shelf-accent-soft);
-  color: var(--shelf-accent);
-}
-
 article.shelf-note {
   padding: 0;
   margin: 0;
@@ -111,21 +106,20 @@ article.shelf-note {
   border-top: 1px solid var(--shelf-line);
 }
 
-@supports selector(:has(*)) {
-  article.shelf-note {
-    display: none;
-  }
+// Pages builds with Ruby Sass 3.7, which cannot parse :has() or
+// @supports selector(). JS adds these classes before paint.
+html.shelf-js article.shelf-note {
+  display: none;
+}
 
-  .shelf-note:target,
-  .shelf:not(:has(.shelf-note:target)) .shelf-note:first-child {
-    display: block;
-  }
+html.shelf-js article.shelf-note.is-current {
+  display: block;
+}
 
-  .shelf-note + .shelf-note {
-    margin-top: 0;
-    padding-top: 0;
-    border-top: 0;
-  }
+html.shelf-js .shelf-note + .shelf-note {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
 }
 
 .shelf-card {
