@@ -199,6 +199,10 @@ article.shelf-note {
   margin-top: 0.45rem;
 }
 
+.shelf-mine {
+  white-space: nowrap;
+}
+
 .shelf-card-blurb {
   margin: 0;
   color: var(--shelf-text);
@@ -338,6 +342,8 @@ article.shelf-note {
   .shelf-index {
     position: sticky;
     top: 1.5rem;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
   }
 }
 

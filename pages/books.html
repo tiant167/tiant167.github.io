@@ -2,13 +2,13 @@
 layout: bookshelf
 title: "📚 书架"
 permalink: /books/
-description: "读过的书。每本先用豆瓣上的信息介绍这本书，再是读后感。"
+description: "豆瓣上标记读过的书。写过读后感的，会放在介绍下面。"
 ---
 
 <div class="shelf">
   <header class="shelf-intro">
     <h1>书架</h1>
-    <p>读过的 {{ site.data.books.size }} 本书。每本先用豆瓣上的信息介绍这本书，再是我的读后感。</p>
+    <p>豆瓣上标记读过的 {{ site.data.books.size }} 本书。写过读后感的，会放在介绍下面。</p>
   </header>
 
   <style>
@@ -49,22 +49,22 @@ description: "读过的书。每本先用豆瓣上的信息介绍这本书，再
             {% if book.origin_title != "" %}
             <p class="shelf-origin">{{ book.origin_title }}</p>
             {% endif %}
+            {% if book.author.size > 0 or book.translator.size > 0 %}
             <p class="shelf-byline">
               {{ book.author | join: "、" }}
               {% if book.translator.size > 0 %}
               <span> · {{ book.translator | join: "、" }} 译</span>
               {% endif %}
             </p>
+            {% endif %}
             <p class="shelf-card-meta">
-              {{ book.publisher }}
-              {% if book.pubdate != "" %} · {{ book.pubdate }}{% endif %}
+              {% if book.publisher != "" %}{{ book.publisher }}{% endif %}
+              {% if book.pubdate != "" %}{% if book.publisher != "" %} · {% endif %}{{ book.pubdate }}{% endif %}
               {% if book.pages != "" %} · {{ book.pages }} 页{% endif %}
               {% if book.binding != "" %} · {{ book.binding }}{% endif %}
               {% if book.series and book.series.title != "" %} · {{ book.series.title }}{% endif %}
-              {% if book.rating.average != "" %}
-              · 豆瓣 {{ book.rating.average }}
-              {% if book.rating.numRaters > 0 %}（{{ book.rating.numRaters }} 人评价）{% endif %}
-              {% endif %}
+              {% if book.rating.average != "" %} · 豆瓣 {{ book.rating.average }}{% if book.rating.numRaters > 0 %}（{{ book.rating.numRaters }} 人评价）{% endif %}{% endif %}
+              {% if book.reading.user_rating > 0 %}<span class="shelf-mine"> · 我的评分 {{ book.reading.user_rating }}</span>{% endif %}
             </p>
           </div>
           {% if book.summary != "" %}
@@ -93,12 +93,14 @@ description: "读过的书。每本先用豆瓣上的信息介绍这本书，再
           {% endif %}
         </section>
 
+        {% if book.reading.note != "" %}
         <div class="shelf-reading">
           <p class="shelf-kicker">读后感 · {{ book.reading.date | date: "%Y年%-m月%-d日" }}</p>
           {{ book.reading.note | markdownify }}
         </div>
+        {% endif %}
 
-        {% if book.reading.source %}
+        {% if book.reading.note != "" and book.reading.source != "" %}
         <p class="shelf-source">
           <a href="{{ book.reading.source | relative_url }}">完整笔记：{{ book.reading.source_title }}</a>
         </p>

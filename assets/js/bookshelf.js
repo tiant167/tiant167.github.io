@@ -16,7 +16,12 @@
   function reveal(link) {
     var scroller = shelf.querySelector(".shelf-index");
     if (!scroller || !link) return;
-    if (getComputedStyle(scroller).overflowX === "visible") return;
+    var style = getComputedStyle(scroller);
+    if (style.overflowY === "auto" || style.overflowY === "scroll") {
+      var top = link.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop;
+      scroller.scrollTo({ top: Math.max(0, top - (scroller.clientHeight - link.offsetHeight) / 2) });
+    }
+    if (style.overflowX === "visible") return;
     var left = link.offsetLeft - (scroller.clientWidth - link.offsetWidth) / 2;
     scroller.scrollTo({ left: Math.max(0, left) });
   }
