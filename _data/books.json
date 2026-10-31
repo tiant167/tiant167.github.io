@@ -1,5 +1,57 @@
 [
   {
+    "id": "26319730",
+    "isbn10": "7508648285",
+    "isbn13": "9787508648286",
+    "title": "娱乐至死",
+    "origin_title": "Amusing Ourselves to Death: Public Discourse in the Age of Show Business",
+    "alt_title": "",
+    "subtitle": "",
+    "url": "https://api.douban.com/v2/book/26319730",
+    "alt": "https://book.douban.com/subject/26319730/",
+    "image": "https://img9.doubanio.com/view/subject/m/public/s28048575.jpg",
+    "images": {
+      "small": "https://img9.doubanio.com/view/subject/s/public/s28048575.jpg",
+      "medium": "https://img9.doubanio.com/view/subject/m/public/s28048575.jpg",
+      "large": "https://img9.doubanio.com/view/subject/l/public/s28048575.jpg"
+    },
+    "author": [
+      "[美] 尼尔·波兹曼"
+    ],
+    "translator": [
+      "章艳"
+    ],
+    "publisher": "中信出版社",
+    "pubdate": "2015-5",
+    "rating": {
+      "max": 10,
+      "numRaters": 46525,
+      "average": "8.4",
+      "min": 0
+    },
+    "tags": [],
+    "binding": "精装",
+    "price": "38.00元",
+    "series": {
+      "id": "37974",
+      "title": "三辉图书 尼尔·波兹曼作品"
+    },
+    "pages": "224",
+    "author_intro": "尼尔·波兹曼（Neil Postman，1931—2003），世界著名的媒介文化研究者和批评家，是继麦克卢汉之后世界最重要的媒介文化研究学者之一，他在纽约大学首创了媒介生态学专业。\n他认为强势媒介能够以一种隐蔽却强大的暗示力量重新定义现实世界，甚至塑造一个时代的文化精神，人们实际上是生存在媒介所制造的巨大隐喻世界中而不自知，因此发展出了“媒介即隐喻”的理论。\n波兹曼出版过20余部著作，《娱乐至死》和《童年的消逝》是他的两部代表作，已被译成多种文字出版。\n译者章艳，上海外国语大学翻译学博士，任教于同济大学外国语学院，曾发表、出版论文译著数篇。",
+    "summary": "有两种方法可以让文化精神枯萎，一种是奥威尔式的——文化成为一个监狱，另一种是赫胥黎式的——文化成为一场滑稽戏。\n——尼尔·波兹曼\n《娱乐至死》初版于1985年，是尼尔·波兹曼的代表作之一。电视时代蒸蒸日上，电视改变了公众话语的内容和意义，政治、宗教、教育、体育、商业和任何其他公共领域的内容，都日渐以娱乐的方式出现，并成为一种文化精神，而人类无声无息地成为娱乐的附庸，毫无怨言，甚至心甘情愿，其结果是我们成了一个娱乐至死的物种。\n乔治·奥威尔曾在《一九八四》中预言人类将会遭受外来压迫，失去自由；赫胥黎则在《美丽新世界》中表达了另一种忧虑：人们会渐渐爱上工业技术带来的娱乐和文化，不再思考。《娱乐至死》想告诉大家可能成为现实的，是赫胥黎的预言，不是奥威尔的预言；毁掉我们的，不是我们憎恨的东西，恰恰是我们热爱的东西。",
+    "catalog": "前言\n第一篇\n第一章 媒介即隐喻\n第二章 媒介即认识论\n第三章 印刷机统治下的美国\n第四章 印刷机统治下的思想\n第五章 躲躲猫的世界\n第二篇\n第六章 娱乐业时代\n第七章 “好……现在”\n第八章 走向伯利恒\n第九章 伸出你的手投上一票\n第十章 教学是一种娱乐活动\n第十一章 赫胥黎的警告\n参考文献\n译名对照表",
+    "reading": {
+      "slug": "26319730",
+      "date": "2026-10-31",
+      "source": "",
+      "source_title": "",
+      "cover": "/assets/img/books/26319730.jpg",
+      "note": "",
+      "user_rating": 0,
+      "comment": ""
+    }
+  },
+  {
     "id": "38594797",
     "isbn10": "",
     "isbn13": "",
