@@ -17,7 +17,7 @@ When I'm not coding, you can probably find me:
 *   Hitting the road for a drive 🏎️ or a trail for a hike 🥾
 *   Staying active with jogging 🏃 and snowboarding 🏂
 
-Oh, and I'm a proud dog dad to a lovely corgi named Beta. You can see her adorable antics [here](/beta/)!
+Oh, and I'm a proud dog dad to a lovely corgi named Beta.
 
 My guiding principle is to always stay curious. 
 
@@ -35,7 +35,7 @@ Thanks for stopping by.
 *   在公路上驾驶 🏎️ 或在山野间徒步 🥾
 *   通过慢跑 🏃 和滑雪 🏂 保持活力
 
-哦，我还有一位家庭成员，一只叫 Beta 的可爱柯基。你可以在[这里](/beta/)看到她的萌照！
+哦，我还有一位家庭成员，一只叫 Beta 的可爱柯基。
 
 我的人生信条是：对生活永远保持好奇。
 

@@ -3,28 +3,73 @@ layout: default
 ---
 
 <div class="home">
-    <style scoped>
+    <style>
         {% assign image = site.header_feature_image | relative_url | split: '.' %}
-        .call-out_img {
-            background-image: url('{{ image | join: '.' }}');
+        .home-mast {
+            background-image: linear-gradient(180deg, rgba(18, 24, 28, 0.18), rgba(18, 24, 28, 0.55)), url('{{ image | join: '.' }}');
         }
         {% if site.header_feature_image_responsive %}
         @media screen and (max-width: 768px) {
-            .call-out_img {
-                background-image: url('{{ image[0] | append: '-medium.' | append: image[1] | default: image}}');
+            .home-mast {
+                background-image: linear-gradient(180deg, rgba(18, 24, 28, 0.18), rgba(18, 24, 28, 0.55)), url('{{ image[0] | append: '-medium.' | append: image[1] | default: image}}');
             }
         }
         @media screen and (max-width: 576px) {
-            .call-out_img {
-                background-image: url('{{ image[0] | append: '-small.' | append: image[1] }}');
+            .home-mast {
+                background-image: linear-gradient(180deg, rgba(18, 24, 28, 0.18), rgba(18, 24, 28, 0.55)), url('{{ image[0] | append: '-small.' | append: image[1] }}');
             }
         }
         {% endif %}
     </style>
-    <div id="main" class="call-out call-out_img">
-        <h1> {{ site.header_text | default: "Change <code>header_text</code> in <code>_config.yml</code>"}} </h1>
-    </div>
+
+    {% if paginator.page == nil or paginator.page == 1 %}
+    <header class="home-mast">
+        <h1>{{ site.header_text }}</h1>
+        <p>{{ site.description }}</p>
+    </header>
+
+    <section class="home-gates" aria-label="书架和旅行">
+        <div class="home-gate">
+            <header class="home-gate-head">
+                <h2>书架</h2>
+                <p>最近读过的书。写过读后感的，封面底下有一条绿线。</p>
+            </header>
+            <div class="home-covers">
+                {% for book in site.data.books limit: 8 %}
+                <a class="home-book{% if book.reading.note != "" %} has-note{% endif %}" href="{{ '/books/' | relative_url }}#{{ book.reading.slug }}">
+                    <img src="{{ book.reading.cover | relative_url }}" alt="" width="120" height="160" loading="lazy">
+                    <span class="home-book-title">{{ book.title }}</span>
+                    <span class="home-book-year">{{ book.reading.date | date: "%Y" }}</span>
+                </a>
+                {% endfor %}
+            </div>
+            <a class="home-more" href="{{ '/books/' | relative_url }}">全部 {{ site.data.books.size }} 本</a>
+        </div>
+
+        <div class="home-gate">
+            <header class="home-gate-head">
+                <h2>Tours</h2>
+                <p>路上的几张照片。全部地点都在地图里。</p>
+            </header>
+            <div class="home-trips">
+                {% for trip in site.data.home_tours %}
+                <a class="home-trip{% if trip.wide %} is-wide{% endif %}" href="{{ '/tours/' | relative_url }}">
+                    <img src="{{ trip.image | relative_url }}" alt="" loading="lazy">
+                    <span class="home-trip-caption">
+                        <span class="home-trip-name">{{ trip.name }}</span>
+                        <span class="home-trip-date">{{ trip.date }}</span>
+                    </span>
+                </a>
+                {% endfor %}
+            </div>
+            <a class="home-more" href="{{ '/tours/' | relative_url }}">打开地图</a>
+        </div>
+    </section>
+
+    <header class="home-writing-head">
+        <h2>最近的文字</h2>
+    </header>
+    {% endif %}
 
     {% include blog/blog.liquid %}
-
 </div>

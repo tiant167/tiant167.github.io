@@ -1,0 +1,18 @@
+# Curated trips for the homepage. Each photo links to /tours/.
+# Pick pictures that still read at a small size; the map keeps the full list.
+- name: Yosemite
+  date: Sep 2025
+  image: /assets/img/tours/yosemite.webp
+  wide: true
+- name: Dolomites
+  date: Sep 2024
+  image: /assets/img/tours/dolomites.webp
+- name: 麦理浩径
+  date: May 2025
+  image: /assets/img/tours/mac-lehose.webp
+- name: 白马
+  date: Dec 2024
+  image: /assets/img/tours/hakuba.webp
+- name: 虎跳峡
+  date: Nov 2024
+  image: /assets/img/tours/tiger.webp
